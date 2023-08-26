@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TriageHasher": {
+      "commandName": "Project",
+      "commandLineArgs": "E:\\ false knownhash.txt .txt output.csv"
+    }
+  }
+}
