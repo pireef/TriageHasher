@@ -39,5 +39,6 @@ In no particular order:
 - Clean up the output report.  Right now it's dumping out the entire FileInfo class, which has several sets of dates and times.  It's hard to tell exactly what it's referring to.
 - Add in file name searching.  Just one more way to find those files.
 - Clean up the input arguments, right now it's strictly in the order shown above.
+- Have option to Prioritize user folders or depriorite system folders.  
 
 Please report any issues and contribute! 
