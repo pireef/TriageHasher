@@ -1,7 +1,5 @@
 ﻿using CsvHelper;
 using System.Globalization;
-using System.Reflection.Metadata;
-using System.Security.Cryptography;
 using TriageHasher;
 
 internal class Program
