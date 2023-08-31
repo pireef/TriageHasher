@@ -69,7 +69,7 @@ internal class Program
         Console.WriteLine("2. [Required] Flag if you wish to stop the search on the first hash match.  This is useful if 1 match is all you need to sieze that device for further processing.\n ");
         Console.WriteLine("3. [Required] File name containing the list of MD5 hashes you are looking for.\n");
         Console.WriteLine("4. [Required] File extension you want to scan.  .* searches all files.\n");
-        Console.WriteLine("4. [Optional] File name of a CSV file you wish to have the output saved to.\n");
+        Console.WriteLine("5. [Optional] File name of a CSV file you wish to have the output saved to.\n");
         Console.WriteLine("Usage:\n\n");
         Console.WriteLine("TriageHasher.exe [Drive Or Directory] [true or false] [Filename of Hashes] [File Extension to search] [Optional CSV file for output]\n");
         Console.WriteLine("Example: \n TriageHasher.exe C:\\ true knownhash.txt *.jpg output.csv");

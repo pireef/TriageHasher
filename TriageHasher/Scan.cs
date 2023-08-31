@@ -86,7 +86,6 @@ namespace TriageHasher
             knownHashes = ReadKnownFile(knownHashfile);
 
             Console.WriteLine("Getting list of files.");
-            //string[] allFiles = Directory.GetFiles(scanLocation, "*.*", SearchOption.AllDirectories);
             var allFiles = Directory.EnumerateFiles(scanLocation, searchType, new EnumerationOptions { IgnoreInaccessible = false, RecurseSubdirectories = true }); ;
             Console.WriteLine("Done!\n\nStarting Hash...");
 
@@ -96,7 +95,6 @@ namespace TriageHasher
                 FileInfo fileInfo = new FileInfo(file);
                 result.File = fileInfo;
                 result.TimeScanned = DateTime.Now;
-                //Console.Write("\r" + fileInfo.Name);
 
                 using (HashAlgorithm hashAlgorithm = MD5.Create())
                 {
@@ -107,7 +105,6 @@ namespace TriageHasher
                             var hash = hashAlgorithm.ComputeHash(fileStream);
                             var hashString = BitConverter.ToString(hash).Replace("-", String.Empty).ToLower();
                             result.Hash = hashString;
-                            //Console.Write(hashString);
                             if (knownHashes.Any(s => s.Contains(hashString)))
                             {
                                 Console.WriteLine("Found Hash match!! " + file + "\t" + hashString);
