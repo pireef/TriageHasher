@@ -32,6 +32,7 @@ Any DFIR class will always, without fail, will have a "know your tool" speach.  
 2. There is no file carving occurring.  The program is taking the directories and files the operating system knows about.
 3. There is no file extension mistmatch detection.  If you are searching .txt and the extension has been changed to .ccd, that file will not be hashed and not checked against your list.
 
+09/02/2023 - Added a new folder "Testing" there is a zip file containing a Basic disk image with a few files.  There is also an example text file with a list of hashes.  
 <h2>What the future holds..</h2>
 
 In no particular order:
