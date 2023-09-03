@@ -91,10 +91,9 @@ namespace TriageHasher
 
             foreach (string file in allFiles)
             {
-                ScanResults result = new ScanResults();
                 FileInfo fileInfo = new FileInfo(file);
-                result.File = fileInfo;
-                result.TimeScanned = DateTime.Now;
+                ScanResults result = new ScanResults(fileInfo);
+                result.TimeScanned = DateTime.UtcNow;
 
                 using (HashAlgorithm hashAlgorithm = MD5.Create())
                 {
