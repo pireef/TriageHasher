@@ -23,7 +23,7 @@ internal class Program
 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(splash);
-        Console.WriteLine("v 0.1");
+        Console.WriteLine("v 0.2");
         Console.ResetColor();
 
         if (args[0] == "-help")
