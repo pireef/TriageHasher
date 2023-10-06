@@ -17,9 +17,9 @@ namespace TriageHasher
         private DateTime lastAccessTimeUtc;
         private string fileName;
         private string fullPath;
-        FileAttributes attributes;
-        string extension;
-        long length;
+        private FileAttributes attributes;
+        private string extension;
+        private long length;
 
         public string Hash { get => hash; set => hash = value; }
         public bool Hashmatch { get => hashmatch; set => hashmatch = value; }
