@@ -5,7 +5,6 @@ namespace TriageHasher
 {
     internal class Scan
     {
-        private string[] args;
         private string scanLocation;
         private string knownHashfile;
         private List<string> knownHashes;
@@ -22,56 +21,30 @@ namespace TriageHasher
         internal List<ScanResults> Results { get => results;}
         internal List<ScanResults> InaccessibleResults { get => inaccessibleResults; set => inaccessibleResults = value; }
 
-        public Scan(string[] cmdargs)
+        public Scan(string scanLocation, string knownHash, string searchType, bool earlyExit)
         {
-            this.args = cmdargs;
+            this.scanLocation = scanLocation;
+            this.knownHashfile = knownHash;
+            this.searchType = "*" + searchType;
+            this.bEarlyAbort = earlyExit;
+
             results = new List<ScanResults>();
-            inaccessibleResults = new List<ScanResults>();
+            inaccessibleResults = new List<ScanResults>(); 
+            knownHashes = new List<string>();
 
-            if (IsValidFolderPath(cmdargs[0]))
+            if (!IsValidFolderPath(scanLocation))
             {
-                scanLocation = cmdargs[0];
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid Drive or Directory: " + args[0]);
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("Invalid Drive or Directory to scan.");
+                Console.ResetColor();
                 bValidSetup = false;
             }
 
-            try
+            if (!File.Exists(Directory.GetCurrentDirectory() + "\\" + knownHashfile)) 
             {
-                bEarlyAbort = Convert.ToBoolean(args[1]);
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid argument: " + args[1] + " Early abort must be true or false");
-                bValidSetup = false;
-            }
-
-            if ((args[2] != null) & (args[2].Length != 0))
-                knownHashfile = args[2];
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("Invalid Known Hash File " + args[2]);
-                bValidSetup = false;
-            }
-
-            if (!File.Exists(Directory.GetCurrentDirectory() + "\\" + knownHashfile))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Known hashfile does not exist..." + knownHashfile);
-                bValidSetup = false;
-            }
-
-            if ((args[3] != null) & ((args[3].Length != 0)))
-                searchType = "*" + args[3];
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Search type needs to contain file extension, ie .*, .jpg, .txt...." + knownHashfile);
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("Known Hash File does not exist " + knownHashfile);
+                Console.ResetColor();
                 bValidSetup = false;
             }
         }
@@ -85,8 +58,9 @@ namespace TriageHasher
             Console.WriteLine("Loading known hashes into memory");
             knownHashes = ReadKnownFile(knownHashfile);
 
-            Console.WriteLine("Getting list of files.");
-            var allFiles = Directory.EnumerateFiles(scanLocation, searchType, new EnumerationOptions { IgnoreInaccessible = false, RecurseSubdirectories = true }); ;
+            Console.WriteLine("Getting list of files with the extension of: " + searchType);
+            var allFiles = Directory.EnumerateFiles(scanLocation, searchType, new EnumerationOptions { IgnoreInaccessible = false, RecurseSubdirectories = true });
+            Console.WriteLine("Found " + allFiles.Count() + " files");
             Console.WriteLine("Done!\n\nStarting Hash...");
 
             foreach (string file in allFiles)
@@ -135,7 +109,6 @@ namespace TriageHasher
                         result.Message = ex.Message;
                         inaccessibleResults.Add(result);
                     }
-
                 }
                 results.Add(result);
             }
