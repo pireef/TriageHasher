@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,6 +46,28 @@ namespace TriageHasher
             attributes = _input.Attributes;
             extension = _input.Extension;
             length = _input.Length;
+        }
+    }
+
+    public static class Info
+    {
+        public static string GetLogo()
+        {
+            string logo = @"_________ _______ _________ _______  _______  _______             _______  _______           _______  _______ 
+\__   __/(  ____ )\__   __/(  ___  )(  ____ \(  ____ \  |\     /|(  ___  )(  ____ \|\     /|(  ____ \(  ____ )
+   ) (   | (    )|   ) (   | (   ) || (    \/| (    \/  | )   ( || (   ) || (    \/| )   ( || (    \/| (    )|
+   | |   | (____)|   | |   | (___) || |      | (__      | (___) || (___) || (_____ | (___) || (__    | (____)|
+   | |   |     __)   | |   |  ___  || | ____ |  __)     |  ___  ||  ___  |(_____  )|  ___  ||  __)   |     __)
+   | |   | (\ (      | |   | (   ) || | \_  )| (        | (   ) || (   ) |      ) || (   ) || (      | (\ (   
+   | |   | ) \ \_____) (___| )   ( || (___) || (____/\  | )   ( || )   ( |/\____) || )   ( || (____/\| ) \ \__
+   )_(   |/   \__/\_______/|/     \|(_______)(_______/  |/     \||/     \|\_______)|/     \|(_______/|/   \__/
+                                                                                                              ";
+            return logo;
+        }
+
+        public static string GetVersion()
+        {
+            return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion!;
         }
     }
 }
