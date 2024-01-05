@@ -1,0 +1,16 @@
+﻿Description: 'TriageHasher - Looks for specific files based on hash'
+Category: Misc
+Author: Brett Bowen
+Version: 1.2
+Id: a2231a4c-3bdf-4254-a2ab-06021789d1b0
+BinaryUrl: https://url.goes.here.com
+ExportFormat: csv
+FileMask: TriageHasher.exe
+Processors:
+    -
+        Executable: TriageHasher.exe
+        CommandLine: --dir %sourceDirectory% --out %destinationDirectory%
+        ExportFormat: csv
+
+# Documentation
+# N/A if no Documentation present. End with new line. Be sure to check out the ModuleGuide.guide for more information!

@@ -2,7 +2,7 @@
   "profiles": {
     "TriageHasher": {
       "commandName": "Project",
-      "commandLineArgs": "--dir E: --hash example.txt"
+      "commandLineArgs": "--dir E:\\ --hash example.txt"
     },
     "Display Help": {
       "commandName": "Project",
@@ -15,6 +15,17 @@
     "SendOutput": {
       "commandName": "Project",
       "commandLineArgs": "--dir E: --hash example.txt --out outputtest.csv"
+    },
+    "Defaults": {
+      "commandName": "Project",
+      "commandLineArgs": "--dir E:\\"
+    },
+    "Nothing entered": {
+      "commandName": "Project"
+    },
+    "SendOutputDir": {
+      "commandName": "Project",
+      "commandLineArgs": "--dir E: --hash example.txt --out F:\\Evidence\\kape\\mout\\Misc"
     }
   }
 }
